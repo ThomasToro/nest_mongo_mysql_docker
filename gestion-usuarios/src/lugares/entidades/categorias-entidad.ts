@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { Lugares } from "./lugares-entidad";
 
 @Entity("categorias")
 export class Categorias {
@@ -7,4 +8,7 @@ export class Categorias {
 
     @Column({ type: "varchar", length: 100 })
     nombre: string;
+
+    @OneToOne(() => Lugares, {cascade:true})
+        lugar: Lugares;
 }

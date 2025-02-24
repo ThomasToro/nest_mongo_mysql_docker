@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { Lugar } from "../dto/lugar";
 
 @Entity("etiquetas")
 export class Etiquetas {
@@ -7,4 +8,7 @@ export class Etiquetas {
 
     @Column({ type: "varchar", length: 100 })
     nombre: string;
+
+    @ManyToMany(() => Lugar, {cascade:true})
+    lugares: Lugar[];
 }
