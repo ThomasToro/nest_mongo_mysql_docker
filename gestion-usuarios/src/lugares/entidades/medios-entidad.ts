@@ -7,7 +7,7 @@ export class Medios {
     id: number;
 
     @Column({ type: "varchar", length: 255 })
-    url: string;
+    valor: string;
 
     @Column({ type: "varchar", length: 50 })
     tipo: string;  // Ejemplo: imagen, video, audio
