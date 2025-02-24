@@ -15,6 +15,8 @@ export class UsuarioControllerController {
     }
     @Get('saludar-persona/:nombre/:apellido')
     saludarConNombre(@Param('nombre') nombre, @Param('apellido') apellido){
+        console.log("Nombre: ", nombre);
+        console.log("Apellido: ", apellido);
         return this.usuarioservice.saludarPersona(nombre, apellido);
     }
 

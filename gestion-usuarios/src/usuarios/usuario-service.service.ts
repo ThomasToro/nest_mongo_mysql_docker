@@ -11,7 +11,7 @@ export class UsuarioServiceService {
         return "Hola Mundo";
     }
     saludarPersona(nombre:string, apellido:string){
-        return `Hola ${nombre} ${apellido}`;
+        return `Hola ${nombre}`;
     }
 
     crearUsuario(usuarioDTO: UsuarioDto){

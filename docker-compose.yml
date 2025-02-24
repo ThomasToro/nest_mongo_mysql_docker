@@ -2,10 +2,16 @@ services:
   app:
     container_name: gestion
     build: .
+    command: npm run start:dev
+
     ports:
       - "3000:3000"
     volumes:
-      - ./gestion-usuarios:/app
+      - type: bind
+        source: ./gestion-usuarios
+        target: /app
+    working_dir: /app
+
     depends_on:
       - mongodb
       - mysql
