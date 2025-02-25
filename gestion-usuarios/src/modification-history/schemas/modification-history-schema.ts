@@ -5,24 +5,17 @@ export type ModificationHistoryDocument = HydratedDocument<ModificationHistory>;
 
 @Schema()
 export class ModificationHistory {
+//Id del lugar
 @Prop({ required: true })
 placeId: string;
-
+//fecha de modificacion
 @Prop({ required: true })
 modifiedAt: Date;
 
-@Prop({
-    type: [
-        {
-        fieldName: { type: String, required: true },
-        oldValue: { type: String, required: true },
-        newValue: { type: String, required: true },
-        },
-    ],
-    required: true,
-})
-modifiedFields: { fieldName: string; oldValue: string; newValue: string }[];
-
+//Campo para indicar el tipo de operación realizada
+@Prop({ required: true })
+operation: string;
+//campo opcional
 @Prop()
 modificationNote?: string;
 }
