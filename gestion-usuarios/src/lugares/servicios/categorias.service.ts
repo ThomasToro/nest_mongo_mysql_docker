@@ -1,23 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DeepPartial } from 'typeorm';
+import { Categorias } from '../entidades/categorias-entidad'; // Se importa la entidad
 import { CategoriasDto } from '../dto/categorias.dto';
-import { DeepPartial } from 'typeorm';
 
 @Injectable()
 export class CategoriasService {
-    constructor(@InjectRepository(CategoriasDto) private categoriesRepository: Repository<CategoriasDto>) {}
-        //constructor(@InjectRepository(Places) private placesRepository: Repository<Places>) {};
-    async createCategory(category: CategoriasDto): Promise<CategoriasDto> {
-        const newModel: DeepPartial<CategoriasDto> = {
-            nombre: category.nombre, // Asegura que coincide con la entidad
-        };
+    constructor(
+        @InjectRepository(Categorias)
+        private readonly categoriesRepository: Repository<Categorias>
+    ) {}
 
-    const createdCategory = this.categoriesRepository.create(newModel);
-        return await this.categoriesRepository.save(createdCategory);
+    async crearCategoria(category: CategoriasDto) {
+        const newmodel = this.categoriesRepository.create(category);
+    
+    return await this.categoriesRepository.save(newmodel);
     }
 
-    async getCategories(): Promise<CategoriasDto[]> {
-        return await this.categoriesRepository.find();
+    async getCategories(){
+    return await this.categoriesRepository.find();
     }
 }
+

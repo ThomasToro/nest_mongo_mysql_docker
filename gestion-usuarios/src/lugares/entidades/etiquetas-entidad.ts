@@ -4,11 +4,11 @@ import { Lugares } from "./lugares-entidad";
 @Entity("etiquetas")
 export class Etiquetas {
     @PrimaryGeneratedColumn()
-    id: number;
+    id_etiqueta: number;
 
     @Column({ type: "varchar", length: 100 })
     nombre: string;
 
-    @ManyToMany(() => Lugares, {cascade:true})
-    lugares: Lugares[];
+    //@ManyToMany(() => Lugares, {cascade:true})
+    //lugares: Lugares[];
 }

@@ -9,24 +9,18 @@ import { LugaresDto } from '../dto/lugares.dto';
 export class LugaresService {
     constructor(@InjectRepository(Lugares) private placesRepository: Repository<Lugares>) {}
 
-    async crear_Lugar(lugar: LugaresDto): Promise<Lugares> {
-        const newModel: DeepPartial<Lugares> = {
-            nombre: lugar.nombre,
-            direccion: lugar.direccion,
-            tipo: lugar.tipo,
-            horarioAtencion: lugar.horarioAtencion,
-        };
-        const createdPlace = this.placesRepository.create(newModel);
+    async crear_Lugar(lugar: LugaresDto){
+        const createdPlace = this.placesRepository.create(lugar);
         return await this.placesRepository.save(createdPlace);
 
     }
 
-    async getPlaces(): Promise<Lugares[]> {
+    async getLugares(){
         return await this.placesRepository.find();
     }
     
-    async getPlaceById(id: number): Promise<Lugares> {
-        const place = await this.placesRepository.findOneBy({id: id});
+    async getLugarById(id: number): Promise<Lugares> {
+        const place = await this.placesRepository.findOneBy({identificador: id});
         if (!place) {
             throw new NotFoundException(`lugar con ID ${id} no fue encontrado`);
         }

@@ -1,7 +1,6 @@
 import { Lugares } from "../entidades/lugares-entidad";
 
 export class EtiquetasDto{
-    id : number;
+    id_etiqueta : number;
     nombre : string;
-    lugares : Lugares;
 }

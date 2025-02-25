@@ -6,7 +6,7 @@ import { Etiquetas } from "./etiquetas-entidad";
 @Entity("lugares")
 export class Lugares {
     @PrimaryGeneratedColumn()
-    id: number;
+    identificador: number;
 
     @Column({ type: "varchar", length: 255 })
     nombre: string;
@@ -34,10 +34,10 @@ export class Lugares {
     name: "lugares_etiquetas", // Nombre de la tabla intermedia
     joinColumn: {
         name: "identificador", // Columna en la tabla intermedia que referencia a Lugar
-        referencedColumnName: "id",
+        referencedColumnName: "identificador",
     },
     inverseJoinColumn: {
-        name: "id_etiqueta", // Columna en la tabla intermedia que referencia a Etiqueta
+        name: "id", // Columna en la tabla intermedia que referencia a Etiqueta
         referencedColumnName: "id",
     },
     })

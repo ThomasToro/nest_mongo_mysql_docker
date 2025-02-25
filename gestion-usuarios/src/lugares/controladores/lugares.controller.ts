@@ -3,23 +3,23 @@ import { LugaresService } from 'src/lugares/servicios/lugares.service';
 import { LugaresDto } from '../dto/lugares.dto';
 import { get } from 'mongoose';
 
-@Controller('place')
+@Controller('lugares')
 export class LugaresController {
         constructor(private placesService: LugaresService) {}
     
-    @Post()
+    @Post('createLugar')
     createPlace(@Body()newPlace: LugaresDto) {
         return this.placesService.crear_Lugar(newPlace);
     }
 
-    @Get()
+    @Get('get-places')
     getPlaces(){
-        return this.placesService.getPlaces();
+        return this.placesService.getLugares();
     }
 
-    @Get(':id')
+    @Get('get-one-place')
     getPlaceById(@Param('id') id: string) {
-        return this.placesService.getPlaceById(Number(id));
+        return this.placesService.getLugarById(Number(id));
     }
 
 }

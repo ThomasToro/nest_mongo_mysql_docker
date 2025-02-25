@@ -8,24 +8,24 @@ import { MediosDto } from '../dto/medios.dto';
 import { Lugares } from '../entidades/lugares-entidad';
 
 @Injectable()
-export class MediaService {
+export class MediosService {
     constructor(
         @InjectRepository(Medios) private mediaRepository: Repository<Medios>,
         @InjectRepository(Lugares) private placesRepository: Repository<Lugares>
     ) {}
 
-    async createMedia(crearMediaDto: MediosDto): Promise<Medios> {
+    async crearMedio(crearMediaDto: MediosDto): Promise<Medios> {
         if (!crearMediaDto.tipo) {
             throw new BadRequestException('La imagen es requerida');
         }
 
-        const place = await this.placesRepository.findOneBy({ id: crearMediaDto.id });
+        const place = await this.placesRepository.findOneBy({ identificador: crearMediaDto.id_medio });
         if (!place) {
             throw new NotFoundException('Lugar no encontrado');
         }
 
         const newMedia: DeepPartial<Medios> = {
-            id: crearMediaDto.id,
+            id: crearMediaDto.id_medio,
             lugar: place,
             tipo: crearMediaDto.tipo,
         };
@@ -34,7 +34,7 @@ export class MediaService {
         return await this.mediaRepository.save(createdMedia);
     }
 
-    async getMediaById(id: number): Promise<Medios> {
+    async getMedioId(id: number): Promise<Medios> {
         const media = await this.mediaRepository.findOne({ where: { id : id} });
     
         if (!media) {

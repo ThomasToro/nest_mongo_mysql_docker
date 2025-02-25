@@ -1,14 +1,14 @@
 import { Express } from 'express';
 import { Controller, Post, Body, Get, UseInterceptors, UploadedFile, Param } from '@nestjs/common';
-import { MediaService } from 'src/lugares/servicios/medios.service';
+import { MediosService } from 'src/lugares/servicios/medios.service';
 import { MediosDto } from '../dto/medios.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('medios')
 export class MediosController {
-    constructor(private mediaService: MediaService) {}
+    constructor(private mediaService: MediosService) {}
 
-    @Post()
+    @Post('create-medio')
     @UseInterceptors(FileInterceptor('tipo'))
     async createMedia(
         @UploadedFile() file: Express.Multer.File,
@@ -20,15 +20,15 @@ export class MediosController {
 
         const base64Image = file.buffer.toString('base64');
 
-        return this.mediaService.createMedia({
+        return this.mediaService.crearMedio({
             ...newMedia,
             tipo: base64Image,
         });
     }
 
-    @Get(':id')
+    @Get('get-medio')
     async getImage(@Param('id') id: number) {
-        const medios = await this.mediaService.getMediaById(id);
+        const medios = await this.mediaService.getMedioId(id);
         if (!medios) {
             return { message: 'Imagen no encontrada' };
         }

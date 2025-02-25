@@ -6,18 +6,17 @@ import { EtiquetasDto } from '../dto/etiquetas.dto';
 
 @Injectable()
 export class EtiquetasService {
-    constructor(@InjectRepository(Etiquetas) private tagsRepository: Repository<Etiquetas>) {}
+    constructor(
+        @InjectRepository(Etiquetas) 
+        private readonly tagsRepository: Repository<Etiquetas>
+    ) {}
 
-    async createTag(etiqueta: EtiquetasDto): Promise<Etiquetas> { 
-        const newModel: DeepPartial<Etiquetas> = { 
-            nombre: etiqueta.nombre 
-        };
-    
-        const createdTag = this.tagsRepository.create(newModel);
+    async crearEtiqueta(etiqueta: EtiquetasDto){ 
+        const createdTag = this.tagsRepository.create(etiqueta);
         return await this.tagsRepository.save(createdTag);
     }
 
-    async getTags(): Promise<Etiquetas[]> {
+    async getTags(){
         return await this.tagsRepository.find();
     }
 }

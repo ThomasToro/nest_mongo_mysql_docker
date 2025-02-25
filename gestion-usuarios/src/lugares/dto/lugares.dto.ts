@@ -1,5 +1,5 @@
 export class LugaresDto{
-    id : number;
+    identificador : number;
     nombre : string;
     direccion : string;
     tipo : string; 

@@ -21,7 +21,7 @@ import { Medios } from './lugares/entidades/medios-entidad';
       entities:[
         Categorias, Etiquetas, Lugares, Medios
       ],
-      synchronize:true
+      synchronize:false
     })
   ],
   controllers: [],
