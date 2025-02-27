@@ -12,8 +12,8 @@ export class Medios {
     @Column({ type: "varchar", length: 50 })
     tipo: string;  // Ejemplo: imagen, video, audio
 
-    @ManyToOne(() => Lugares, (lugar) => lugar.medios)
-    lugar: Lugares;
+    //@ManyToOne(() => Lugares, (lugar) => lugar.medios)
+    //identificador: number;
 
 }
 

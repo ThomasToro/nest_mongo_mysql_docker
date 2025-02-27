@@ -9,33 +9,13 @@ export class MediosController {
     constructor(private mediaService: MediosService) {}
 
     @Post('create-medio')
-    @UseInterceptors(FileInterceptor('tipo'))
-    async createMedia(
-        @UploadedFile() file: Express.Multer.File,
-        @Body() newMedia: MediosDto
-    ) {
-        if (!file) {
-            return { message: 'No se subió ninguna imagen' };
-        }
-
-        const base64Image = file.buffer.toString('base64');
-
-        return this.mediaService.crearMedio({
-            ...newMedia,
-            tipo: base64Image,
-        });
+    async createMedia(@Body()newMedio: MediosDto) {
+        return this.mediaService.crearMedio(newMedio)
     }
 
     @Get('get-medio')
-    async getImage(@Param('id') id: number) {
-        const medios = await this.mediaService.getMedioId(id);
-        if (!medios) {
-            return { message: 'Imagen no encontrada' };
-        }
+    getMedioId() {
+        return this.mediaService.getMedioId();
+    } 
 
-        return {
-            id: medios.id,
-            image: `data:image/jpeg;base64,${medios.tipo}`,
-        };
-    }
 }

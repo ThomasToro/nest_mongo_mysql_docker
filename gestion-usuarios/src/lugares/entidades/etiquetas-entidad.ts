@@ -6,7 +6,7 @@ export class Etiquetas {
     @PrimaryGeneratedColumn()
     id_etiqueta: number;
 
-    @Column({ type: "varchar", length: 100 })
+    @Column()
     nombre: string;
 
     //@ManyToMany(() => Lugares, {cascade:true})

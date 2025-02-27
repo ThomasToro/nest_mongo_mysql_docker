@@ -18,7 +18,7 @@ export class Lugares {
     tipo: string; // Por ejemplo: "restaurante", "parque", "museo", "cafetería"
 
     @Column({ type: "varchar", length: 100 })
-    horarioAtencion: string;
+    horario: string;
 
     @Column({ type: "text", nullable: true })
     descripcion: string;
@@ -26,8 +26,8 @@ export class Lugares {
     @OneToOne(() => Categorias, {cascade:true})
     categoria: Categorias;
 
-    @OneToMany(() => Medios, (medio) => medio.lugar, { cascade: true })
-    medios: Medios[];
+    //@OneToMany(() => Medios, (medio) => medio.identificador, { cascade: true })
+    //medios: Medios[];
 
     @ManyToMany(() => Etiquetas, { cascade: true })
     @JoinTable({
@@ -37,8 +37,8 @@ export class Lugares {
         referencedColumnName: "identificador",
     },
     inverseJoinColumn: {
-        name: "id", // Columna en la tabla intermedia que referencia a Etiqueta
-        referencedColumnName: "id",
+        name: "id_etiqueta", // Columna en la tabla intermedia que referencia a Etiqueta
+        referencedColumnName: "id_etiqueta",
     },
     })
     etiquetas: Etiquetas[];
