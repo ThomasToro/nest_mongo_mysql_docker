@@ -3,5 +3,6 @@ export class LugaresDto{
     nombre : string;
     direccion : string;
     tipo : string; 
-    horario : string
+    horario : string;
+    id_categoria : number;
 }

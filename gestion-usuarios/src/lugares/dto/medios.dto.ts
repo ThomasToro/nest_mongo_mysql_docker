@@ -2,7 +2,7 @@ import { Lugares } from "../entidades/lugares-entidad";
 
 export class MediosDto{
     id_medio : number;
-    url : string;
+    valor : string;
     tipo : string;
     identificador : number;
 }

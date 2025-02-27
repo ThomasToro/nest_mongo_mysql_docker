@@ -23,8 +23,8 @@ export class Lugares {
     @Column({ type: "text", nullable: true })
     descripcion: string;
 
-    @OneToOne(() => Categorias, {cascade:true})
-    categoria: Categorias;
+    @Column()
+    id_categoria: number;
 
     //@OneToMany(() => Medios, (medio) => medio.identificador, { cascade: true })
     //medios: Medios[];

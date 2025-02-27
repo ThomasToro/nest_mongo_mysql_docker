@@ -9,6 +9,7 @@ export class LugaresController {
     
     @Post('createLugar')
     createPlace(@Body()newPlace: LugaresDto) {
+        console.log(newPlace);
         return this.placesService.crear_Lugar(newPlace);
     }
 
