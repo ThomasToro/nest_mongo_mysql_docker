@@ -29,4 +29,10 @@ export class ModificationHistoryController {
         // Se llama al servicio para crear el registro y se retorna el resultado de dicha operación
         return this.modificationHistoryService.createModificationHistory(modificationHistoryDTO);
     }
+
+    @Get('get-modification-history/:id')
+        getModificationHistory(@Param('id') id: string) {
+            return this.modificationHistoryService.getModificationHistory(id);
+}
+
 }

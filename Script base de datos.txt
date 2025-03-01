@@ -1,0 +1,44 @@
+CREATE DATABASE mapadb;
+USE mapadb;
+
+-- Tabla de Categorías
+CREATE TABLE categorias (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(30) NOT NULL
+);
+
+-- Tabla de Lugares
+CREATE TABLE lugares (
+    identificador INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(20) NOT NULL,
+    direccion VARCHAR(50) NOT NULL,
+    tipo ENUM('restaurante', 'parque', 'museo', 'cafeteria') NOT NULL,
+    horario TIME NOT NULL,
+    descripcion TEXT,
+    id_categoria INT NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE CASCADE
+);
+
+-- Tabla de Medios
+CREATE TABLE medios (
+    id_medio INT AUTO_INCREMENT PRIMARY KEY,
+    tipo ENUM('imagen', 'url') NOT NULL,
+    valor VARCHAR(255) NOT NULL,     
+    descripcion TEXT,
+    identificador INT NOT NULL
+);
+
+-- Tabla de Etiquetas
+CREATE TABLE etiquetas (
+    id_etiqueta INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(40) NOT NULL
+);
+
+-- Tabla intermedia Lugares - Etiquetas (relación muchos a muchos)
+CREATE TABLE lugares_etiquetas (
+    identificador INT NOT NULL,
+    id_etiqueta INT NOT NULL,
+    PRIMARY KEY (identificador, id_etiqueta),
+    FOREIGN KEY (identificador) REFERENCES lugares(identificador) ON DELETE CASCADE,
+    FOREIGN KEY (id_etiqueta) REFERENCES etiquetas(id_etiqueta) ON DELETE CASCADE
+);

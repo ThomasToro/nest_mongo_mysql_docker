@@ -23,6 +23,10 @@ export class ModificationHistoryService {
         // Se guarda el nuevo documento en la base de datos y se retorna el resultado.
         return newModificationHistory.save();
     }
+
+    getModificationHistory(id: string) {
+        return this.ModificationHistoryModel.find({placeId: id}).exec();
+    }
 }
 
 
