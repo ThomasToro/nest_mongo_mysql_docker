@@ -23,4 +23,16 @@ export class QaController {
         // Llamada al servicio para crear una pregunta y respuesta en la base de datos
         return this.qaService.createQa(qaDTO);
     }
+
+    //Ruta GET que obtiene todas las preguntas y respuestas
+    @Get('get-qas')
+    getQas() {
+        return this.qaService.getQas();
+    }
+
+    //Ruta que obtiene una pregunta y respuesta por su id
+    @Get('get-qa/:id')
+    getQaById(@Param('id') id: string) {
+        return this.qaService.getQaById(id);
+    }
 }

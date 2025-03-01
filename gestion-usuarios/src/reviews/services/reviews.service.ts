@@ -18,6 +18,13 @@ export class ReviewsService {
         // Guardamos la nueva reseña en la base de datos y retornamos el resultado
         return newReview.save();
     }
+
+    // Método para obtener todas las reseñas
+    getReviews() {
+        return this.reviewModel.find().exec();
+    }
+
+    
 }
 
     
