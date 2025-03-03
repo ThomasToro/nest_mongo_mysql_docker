@@ -18,7 +18,7 @@ export class QaController {
     // Método que recibe un DTO (Data Transfer Object) que contiene los datos de la pregunta y respuesta
     createQa(@Body() qaDTO: CreateQaDto) {
         // Se imprime el DTO recibido para depuración
-        console.log("QaDTO: ", qaDTO);
+        console.log("Arroz: ", qaDTO);
 
         // Llamada al servicio para crear una pregunta y respuesta en la base de datos
         return this.qaService.createQa(qaDTO);

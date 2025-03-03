@@ -29,7 +29,7 @@ export class Qa {
         ],
         required: true, // Se requiere al menos una respuesta para cada pregunta
     })
-    answers: { answerText: string; answeredAt: Date }[];
+    answers: { answerText: string; ansSweredAt: false }[];
 }
 
 // Generación del esquema de Mongoose a partir de la clase Qa
